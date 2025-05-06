@@ -1,0 +1,34 @@
+body {
+    overflow: hidden;
+}
+
+#cartSection {
+    width: 600px;
+    max-width: 90%;
+}
+
+#cartItemList{
+    overflow: auto;
+}
+
+#cartTotal{
+    min-height: 10%;
+    max-height: 80px;
+    background-color: #aaa;
+}
+
+#confirmBox {
+    min-width: 300px;
+    animation: grow 0.5s ease-out forwards;
+}
+
+@keyframes grow {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
