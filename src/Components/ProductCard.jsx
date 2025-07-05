@@ -1,24 +1,27 @@
-import React from 'react';
+import { useNavigate, useContext } from "react-router-dom";
+import { ProductContext } from "../Context/ProductContext";
 
 function ProductCard({productObj, index, handleAddToCart}) {
+    const navigate = useNavigate()
+
   return (
     <div className="col-12 col-md-6 g-4 ">
-        <div className="card">
-            <div className="bg-secondary " style={{height : "100px"}}>
-                <div className="text-white fw-bold text-center" style={{marginTop : "40px", transform : "rotate(-35deg)"}}>Image</div>
+        <div className="card" onClick={() => navigate(`/product/${productObj.index}`)}>
+             <div className="bg-secondary text-white fs-1 fw-bold d-flex align-items-center justify-content-center" style={{height : "200px"}}>
+                <span style={{transform : "rotate(-35deg)"}}>Image</span>
             </div>
             <div className="card-body bg-white" style={{}}>
                 <div className={`card-title`}>
-                    <h4 className='text-center' style={{display : "-webkit-box", WebkitLineClamp : 2, WebkitBoxOrient : "vertical", overflow : "hidden"}}>{productObj.name}</h4>
+                    <h4 className='text-center fs-2' style={{display : "-webkit-box", WebkitLineClamp : 2, WebkitBoxOrient : "vertical", overflow : "hidden"}}>{productObj.name}</h4>
                 </div>
                 <div className=" mt-2 d-flex justify-content-center">
-                    <div style={{ fontSize : "18px"}}>
-                        Rs. {productObj.price.toLocaleString('en-IN')}
+                    <div className="fs-3 text-success">
+                        ₹{productObj.price.toLocaleString('en-IN')}
                     </div>
                 </div>
                 <div className=" mt-2 d-flex justify-content-center">
                     <div style={{ fontSize : "18px"}}>
-                        {productObj.rating}
+                       ⭐ {productObj.rating}
                     </div>
                 </div>
                 <div className=" mt-2 d-flex justify-content-center">
