@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 function HomePage() {
   const {productData, setFilteredItems} = useContext(ProductContext);
   const [featuredItems, setFeaturedItems] = useState({});
-  const [selectedCategory, setselectedCategory] = useState('');
   const navigate = useNavigate();
 
   useEffect( () => {
@@ -17,11 +16,9 @@ function HomePage() {
   }, [productData])
 
   const handleCategoryClick = (category) => {
-      setselectedCategory(category);      
       const categoryFiltered = productData.filter(item => item.category === category);
       setFilteredItems(categoryFiltered);      
-      navigate(`/category/${encodeURIComponent(category.toLowerCase().trim())}`);      
-      console.log("Items in this category:", category);
+      navigate(`/category/${encodeURIComponent(category.toLowerCase().trim())}`);
   }  
 
   return (
@@ -30,10 +27,10 @@ function HomePage() {
       {/* Categories */}
       <section className="container my-5">
         <h2 className="mb-4 text-center">Categories</h2>
-        <div className="row g-4 text-center">
+        <div className="row justify-content-around g-4 text-center">
           {[...new Set(productData.map(item => item.category))].map((cat, index) => (
             <div className="col-6 col-md-4 col-lg-2" key={index}>
-              <div className="card h-100 shadow-sm p-3" onClick={() => handleCategoryClick(cat)}>
+              <div className="card shadow-sm p-3" onClick={() => handleCategoryClick(cat)}>
                 <div className="fw-bold">{cat}</div>
               </div>
             </div>
