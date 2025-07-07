@@ -3,11 +3,11 @@ import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { ProductContext } from '../Context/ProductContext';
 
 function Navbar() {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const searchParam = new URLSearchParams(location.search)
-  const query = searchParam.get('query')
-  const [searchTerm, setSearchTerm] = useState(query);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const searchParam = new URLSearchParams(location.search);
+  const query = searchParam.get('query');
+  const [searchTerm, setSearchTerm] = useState(query || '');
   const { productData, setFilteredItems } = useContext(ProductContext);
 
   useEffect( () => {
@@ -15,7 +15,7 @@ function Navbar() {
       const filtered = [...productData].filter(item => item.name.toLowerCase().includes(query)).sort((a, b) =>
           a.name.toLowerCase().indexOf(query) - b.name.toLowerCase().indexOf(query)
         );
-        setFilteredItems(filtered)
+        setFilteredItems(filtered);
     }
   }, [searchTerm, productData])
 
@@ -27,23 +27,25 @@ function Navbar() {
           a.name.toLowerCase().indexOf(term) - b.name.toLowerCase().indexOf(term)
         );
     
-      setFilteredItems(filtered)      
+      setFilteredItems(filtered);
       navigate(`/search?query=${encodeURIComponent(term)}`);
     }
-  };
+  }
 
   return (
-    <nav className='col-12 p-3 bg-light d-flex'>
-        <div className='mx-3'>
+    <nav className='p-3 bg-light d-flex'>
+        <div className='mx-3 my-auto'>
             <h2>E-comm</h2>
         </div>
-        <form className="mx-3 form-inline d-flex align-items-center" onSubmit={handleSearch}>
-            <input className="form-control form-control-sm  me-2" type="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search" aria-label="Search"/>
-            <button className="btn btn-sm btn-outline-success" type="submit">Search</button>
+        <form className="w-25 mx-3 form-inline d-flex align-items-center bg-white border border-secondary rounded-3" onSubmit={handleSearch}>
+            <input className="w-100 fs-5 form-control form-control-sm outline-none" type="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search . . ." aria-label="Search"/>
+            <button className="btn ms-auto" type="submit">
+              <img src='Images/search-icon.png' alt='search' style={{height : "16px"}} />
+            </button>
         </form>
         <div className='ms-auto me-3 my-auto'>
             <Link to={'cart'}>
-              <img src='Images/cart-icon.png' alt='cart-icon' style={{height : "40px"}} />
+              <img src='Images/cart-icon.png' alt='cart' style={{height : "30px"}} />
             </Link>
         </div>
         <Outlet/>

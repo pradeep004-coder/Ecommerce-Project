@@ -2,6 +2,20 @@ body {
     overflow: hidden;
 }
 
+.outline-none {
+    border: none;
+    box-shadow: none
+}
+
+.outline-none:focus {
+  border: none;
+  box-shadow: none ;
+}
+
+.self-end{
+    justify-self: end;
+}
+
 #cartSection {
     width: 600px;
     max-width: 90%;

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function CartCard({productObj, index, quantity, handleIncreaseQty, handleDecreaseQty, handleRemove}) {
@@ -33,7 +32,7 @@ function CartCard({productObj, index, quantity, handleIncreaseQty, handleDecreas
             </div>
         </div>
     </div>
-  )
+  );
 }
 
 export default CartCard;

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import { ProductContext } from "../Context/ProductContext";
 
 function SortFilterPanel() {
@@ -9,43 +9,43 @@ function SortFilterPanel() {
     const [initialItems, setInitialItems] = useState([]);
 
     useEffect(() => {
-        setInitialItems([...filteredItems])
+        setInitialItems([...filteredItems]);
     }, [])
 
     const handlePriceChange= (evt)=> {
-        const value = Number(evt.target.value)
-        setPriceLimit(value)
-        setDisplayPriceValue(value)
+        const value = Number(evt.target.value);
+        setPriceLimit(value);
+        setDisplayPriceValue(value);
     }
 
      const handleSort = (evt) => {
-        setSortOption(evt.target.value.trim())
+        setSortOption(evt.target.value.trim());
     }
 
     const handleApply = () => {
-        let filtered = [...initialItems].filter(items => items.price <= selectedPriceLimit)
+        let filtered = [...initialItems].filter(items => items.price <= selectedPriceLimit);
         if (sortOption === 'priceLow') {
-            filtered.sort((a,b) => a.price - b.price)
+            filtered.sort((a,b) => a.price - b.price);
         }     
         else if (sortOption === 'priceHigh') {
-            filtered.sort((a,b) => b.price - a.price)
+            filtered.sort((a,b) => b.price - a.price);
         } 
         else if (sortOption === 'rating'){
-            filtered.sort((a,b) => b.rating - a.rating)
+            filtered.sort((a,b) => b.rating - a.rating);
         }  
         
-        setFilteredItems(filtered)        
+        setFilteredItems(filtered);
     }
 
     const handleReset = () => {
-        setPriceLimit(1000000)
-        setDisplayPriceValue('∞')
-        setSortOption('')
-        setFilteredItems(initialItems)
+        setPriceLimit(1000000);
+        setDisplayPriceValue('∞');
+        setSortOption('');
+        setFilteredItems(initialItems);
     }
 
   return (
-    <aside className='col-2 ps-4 fs-4'>
+    <aside className='ps-4 pe-4 fs-4'>
     
         <div className="flex flex-col gap-4 mt-4 ml-4">
             

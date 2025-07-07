@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
-  const {productData, filteredItems, setFilteredItems, cartItems, setCartItems} = useContext(ProductContext)
+  const {productData, setFilteredItems} = useContext(ProductContext);
   const [featuredItems, setFeaturedItems] = useState({});
   const [selectedCategory, setselectedCategory] = useState('');
   const navigate = useNavigate();
@@ -22,8 +22,7 @@ function HomePage() {
       setFilteredItems(categoryFiltered);      
       navigate(`/category/${encodeURIComponent(category.toLowerCase().trim())}`);      
       console.log("Items in this category:", category);
-  };
-  
+  }  
 
   return (
     <div className="homepage overflow-auto" style={{height : '100vh'}}>

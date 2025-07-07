@@ -11,13 +11,13 @@ function ProductDetail() {
   const product = productData.find(item => item.index === parseInt(productId)); // match by index
 
    const handleAddToCart = (evt) => {
-        let add = true
-        evt.target.classList.replace('btn-primary', 'btn-secondary')
+        let add = true;
+        evt.target.classList.replace('btn-primary', 'btn-secondary');
         cartItems.map( item =>( // check the item is in cart or not
             add = item[0] === productData.indexOf(product) ? false : add
-        ))
+        ));
         if (add) {
-            setCartItems([...cartItems, [productData.indexOf(product), 1]])
+            setCartItems([...cartItems, [productData.indexOf(product), 1]]);
         }
     }
 

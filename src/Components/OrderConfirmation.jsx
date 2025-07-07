@@ -30,7 +30,7 @@ function OrderConfirmation() {
       ...prev,
       [e.target.name]: e.target.value,
     }));
-  };
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,19 +41,12 @@ function OrderConfirmation() {
       return;
     }
 
-    console.log("Order Placed:", {
-      ...formData,
-      fullAddress: `${house}, ${locality}, ${city} - ${pincode}`,
-      items: orderedItems,
-      total,
-    });
-
     if (type === 'cart') {
       setCartItems([]);
     }
     alert("Order placed successfully!");
     navigate('/');
-  };
+  }
 
   return (
     <div className="px-5 py-5" style={{height : '100vh', overflow : 'auto'}}>
