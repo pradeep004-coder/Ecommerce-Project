@@ -8,20 +8,17 @@ function Cart() {
     const [ showConfirmBox, setShowConfirmBox ] = useState(false)
     const [ cartTotal, setCartTotal ] = useState(0)
     const [ delCart, setDelCart ] = useState(null)
-
     const navigate = useNavigate()
 
-    useEffect(
-        () => {
-            if(productData.length) {
-                let sum = 0;
-                cartItems.forEach(item => {
-                sum += productData[item[0]].price * item[1];
-                });
-                setCartTotal(sum)
-            }
-        },
-    [cartItems, productData])
+    useEffect(() => {
+        if(productData.length) {
+            let sum = 0;
+            cartItems.forEach(item => {
+            sum += productData[item[0]].price * item[1];
+            });
+            setCartTotal(sum)
+        }
+    },[cartItems, productData])
 
     const handleIncreaseQty = (evt, index) => { 
         evt.stopPropagation();
