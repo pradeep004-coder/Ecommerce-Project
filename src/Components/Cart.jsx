@@ -7,9 +7,16 @@ import { useNavigate } from 'react-router-dom';
 function Cart() {
     const {productData, cartItems, setCartItems} = useContext(ProductContext);
     const [ showConfirmBox, setShowConfirmBox ] = useState(false);
+    const [showCart, setShowCart] = useState(false);
     const [ cartTotal, setCartTotal ] = useState(0);
     const [ delCart, setDelCart ] = useState(null);
     const navigate = useNavigate();
+
+    useEffect(() => { 
+        setTimeout(() => {
+            setShowCart(true)
+        }, 300);
+     },[])
 
     useEffect(() => {
         if(productData.length) {
@@ -19,8 +26,15 @@ function Cart() {
             });
             setCartTotal(sum);
         }
-    },[cartItems, productData])
+    },[cartItems, productData]);
 
+    const handleDismissCart = () => {
+      setShowCart(false)
+      setTimeout(() => {
+        navigate(-1)
+      }, 300);
+    };
+    
     const handleIncreaseQty = (evt, index) => { 
         evt.stopPropagation();
         const updatedItems = cartItems.map((item, i) => 
@@ -81,37 +95,39 @@ function Cart() {
 
     return (
         <>
-            <div className={`w-100 h-100 d-flex overflow-hidden position-absolute start-0 top-0 z-3 bg-dark bg-opacity-75 `} id='cartBox' onClick={() =>navigate(-1)}>
-                <button type='button' className="ms-auto border-0 bg-white p-2 align-self-start rounded-start">{'>'}</button>
-                <div className=" bg-white align-self-stretch" id='cartSection' onClick={evt => evt.stopPropagation()}>
-                        <div className="d-flex flex-column h-100">
-                            <div id='cartItemList' className='mt-2 h-100 align-self-stretch'>
-                                {cartItems.map ( (val, index) => { 
-                                    const product = productData[val[0]];
-                                    if (!product) return null; // safety
+            <div className={`w-100 h-100 d-flex justify-content-end overflow-hidden position-fixed start-0 top-0 z-1 bg-dark bg-opacity-75 `} id='cartBox' onClick={handleDismissCart}>
+                <div className={`h-100 d-flex flex-row bg-transparent ${showCart? "shift-left":"shift-right"} cart-in-out`}>
+                    {showCart && <button type='button' className={`border-0 bg-white p-2 align-self-start rounded-start`}>{'>'}</button>}
+                    <div className={`bg-white align-self-stretch`} id='cartSection' onClick={evt => evt.stopPropagation()}>
+                            <div className="d-flex flex-column h-100">
+                                <div id='cartItemList' className='mt-2 h-100 align-self-stretch'>
+                                    {cartItems.map ( (val, index) => { 
+                                        const product = productData[val[0]];
+                                        if (!product) return null; // safety
 
-                                    return (
-                                        <CartCard 
-                                            key={val[0]}
-                                            index={index}
-                                            productObj={productData[val[0]]}
-                                            quantity={val[1]}
-                                            handleIncreaseQty={handleIncreaseQty}
-                                            handleDecreaseQty={handleDecreaseQty}
-                                            handleRemove={handleRemove}
-                                        />
-                                    )
-                            })}
-                            </div>
-                            <div id='cartTotal' className='w-100 fw-bold align-self-end d-flex align-items-center justify-content-around '>
-                                <div>Total : ₹ {cartTotal.toLocaleString('en-IN')}</div>
-                                <div>
-                                    <button  className="btn btn-primary m-2" onClick={handlePlaceOrder}>Place Order</button>
+                                        return (
+                                            <CartCard 
+                                                key={val[0]}
+                                                index={index}
+                                                productObj={productData[val[0]]}
+                                                quantity={val[1]}
+                                                handleIncreaseQty={handleIncreaseQty}
+                                                handleDecreaseQty={handleDecreaseQty}
+                                                handleRemove={handleRemove}
+                                            />
+                                        )
+                                })}
                                 </div>
-                            </div>
-                            {showConfirmBox && <ConfirmBox onConfirm={onConfirm} onCancel={onCancel}/>}
+                                <div id='cartTotal' className='w-100 fw-bold align-self-end d-flex align-items-center justify-content-around '>
+                                    <div>Total : ₹ {cartTotal.toLocaleString('en-IN')}</div>
+                                    <div>
+                                        <button  className="btn btn-primary m-2" onClick={handlePlaceOrder}>Place Order</button>
+                                    </div>
+                                </div>
+                                {showConfirmBox && <ConfirmBox onConfirm={onConfirm} onCancel={onCancel}/>}
+                        </div>
                     </div>
-            </div>
+                </div>
            </div>
         </>
     );  

@@ -88,7 +88,7 @@ function SortFilterPanel() {
             </div>
             <div className="mt-4 d-flex justify-content-between">
                 <button type="button" className="btn btn-dark" onClick={handleReset}>Reset</button>
-                <button type="button" className="btn btn-white" onClick={handleApply} disabled={selectedPriceLimit === 1000000 && sortOption === ""}>Apply</button>
+                <button type="button" className="btn btn-outline-dark" onClick={handleApply} disabled={selectedPriceLimit === 1000000 && sortOption === ""}>Apply</button>
             </div>
         </div>
     

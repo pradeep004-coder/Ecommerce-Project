@@ -16,9 +16,27 @@ body {
     justify-self: end;
 }
 
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
 #cartSection {
     width: 600px;
     max-width: 90%;
+}
+
+.shift-left {
+    transform: translateX(0%);
+}
+
+.shift-right {
+    transform: translateX(100%);
+}
+
+.cart-in-out {
+    transition: transform 300ms ease-in-out;
 }
 
 #cartItemList{
@@ -31,18 +49,18 @@ body {
     background-color: #aaa;
 }
 
-#confirmBox {
+ #confirmBox {
     min-width: 300px;
-    animation: grow 0.5s ease-out forwards;
+    transition: opacity 300ms ease-in-out;
 }
 
-@keyframes grow {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+
+.scale-in {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.scale-out {
+    opacity: 0;
+    transform: scale(0);
 }

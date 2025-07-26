@@ -4,7 +4,7 @@ function ProductCard({productObj, index, handleAddToCart}) {
     const navigate = useNavigate();
 
   return (
-    <div className="card mb-3" onClick={() => navigate(`/product/${productObj.index}`)}>
+    <div className="product-card card mb-3" onClick={() => navigate(`/product/${productObj.index}`)}>
             <div className="bg-secondary text-white fs-1 fw-bold d-flex align-items-center justify-content-center" style={{height : "200px"}}>
             <span style={{transform : "rotate(-35deg)"}}>Image</span>
         </div>

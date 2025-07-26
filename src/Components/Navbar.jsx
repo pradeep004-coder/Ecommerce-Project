@@ -33,23 +33,25 @@ function Navbar() {
   }
 
   return (
-    <nav className='p-3 bg-light d-flex'>
-        <div className='mx-3 my-auto'>
-            <h2>E-comm</h2>
-        </div>
-        <form className="w-25 mx-3 form-inline d-flex align-items-center bg-white border border-secondary rounded-3" onSubmit={handleSearch}>
-            <input className="w-100 fs-5 form-control form-control-sm outline-none" type="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search . . ." aria-label="Search"/>
-            <button className="btn ms-auto" type="submit">
-              <img src='Images/search-icon.png' alt='search' style={{height : "16px"}} />
-            </button>
-        </form>
-        <div className='ms-auto me-3 my-auto'>
-            <Link to={'cart'}>
-              <img src='Images/cart-icon.png' alt='cart' style={{height : "30px"}} />
-            </Link>
-        </div>
-        <Outlet/>
-    </nav>
+    <div className='mb-3' style={{height:'60px'}}>
+      <nav className='w-100 p-3 bg-light d-flex position-fixed z-1 top-0' style={{height:'60px'}}>
+          <div className='mx-3 my-auto'>
+              <h2>E-comm</h2>
+          </div>
+          <form className="w-25 mx-3 form-inline d-flex align-items-center bg-white border border-secondary rounded-3" onSubmit={handleSearch}>
+              <input className="w-100 fs-5 form-control form-control-sm outline-none" type="search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search . . ." aria-label="Search"/>
+              <button className="btn ms-auto" type="submit">
+                <img src='Images/search-icon.png' alt='search' style={{height : "16px"}} />
+              </button>
+          </form>
+          <div className='ms-auto me-3 my-auto'>
+              <Link to={'cart'}>
+                <img src='Images/cart-icon.png' alt='cart' style={{height : "30px"}} />
+              </Link>
+          </div>
+          <Outlet/>
+      </nav>
+    </div>
   );
 }
 
