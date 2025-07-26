@@ -16,6 +16,18 @@ body {
     justify-self: end;
 }
 
+.mount-filter {
+    transform: translateX(0%);
+}
+
+.unmount-filter {
+    transform: translateX(-100%);
+}
+
+.filter-in-out {
+    transition: transform 300ms ease-in-out;
+}
+
 .product-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
